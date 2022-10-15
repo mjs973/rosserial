@@ -77,7 +77,7 @@ class APIFrame:
         data length in two bytes, big-endian (most significant first).
         """
         count = len(self.data)
-        return struct.pack("> h", count)
+        return struct.pack("> h", count).decode('iso-8859-1')
         
     def output(self):
         """
@@ -143,7 +143,7 @@ class APIFrame:
 
         if len(self.raw_data) >= 3:
             # First two bytes are the length of the data
-            raw_len = self.raw_data[1:3]
+            raw_len = self.raw_data[1:3].encode('iso-8859-1')
             data_len = struct.unpack("> h", raw_len)[0]
 
             remaining += data_len
@@ -164,7 +164,7 @@ class APIFrame:
             ValueError("parse() may only be called on a frame containing at least 3 bytes of raw data (see fill())")
 
         # First two bytes are the length of the data
-        raw_len = self.raw_data[1:3]
+        raw_len = self.raw_data[1:3].encode('iso-8859-1')
         
         # Unpack it
         data_len = struct.unpack("> h", raw_len)[0]

@@ -65,15 +65,15 @@ parser.add_option('-C', '--coordinator', action="store_true", dest="coordinator"
 
 def send(port, cmd):
 	for c in cmd+'\r':
-		port.write(c)
+		port.write(c.encode('iso-8859-1'))
 		time.sleep(0.06)
 
 def setAT(port, cmd):
 	port.flushInput()
-	send(port, 'AT'+cmd)
+	send(port, b'AT'+cmd.encode('iso-8859-1'))
 	rsp = port.readline()
 	print(rsp)
-	if 'OK' in rsp:
+	if b'OK' in rsp:
 		return True
 	else :
 		return False
@@ -92,10 +92,10 @@ baud_lookup= { 1200   : 0,
 def beginAtMode(port):
 
 	for i in range(0,3):
-		port.write('+')
+		port.write(b'+')
 		time.sleep(0.05)
 	time.sleep(1)
-	if port.read(2) == 'OK':
+	if port.read(2) == b'OK':
 		return True
 	else :
 		return False
