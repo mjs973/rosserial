@@ -408,7 +408,7 @@ class TestWriteToDevice(unittest.TestCase):
         xbee.send('at', frame_id='A', command='MY')
         
         # Expect a full packet to be written to the device
-        expected_data = '\x7E\x00\x04\x08AMY\x10'
+        expected_data = b'\x7E\x00\x04\x08AMY\x10'
         self.assertEqual(serial_port.data, expected_data)
         
         
@@ -430,7 +430,7 @@ class TestWriteToDevice(unittest.TestCase):
         )
         
         # Expect a full packet to be written to the device
-        expected_data = '\x7E\x00\x06\x08AMY\x00\x00\x10'
+        expected_data = b'\x7E\x00\x06\x08AMY\x00\x00\x10'
         self.assertEqual(serial_port.data, expected_data)
         
 class TestSendShorthand(unittest.TestCase):
@@ -454,7 +454,7 @@ class TestSendShorthand(unittest.TestCase):
         self.xbee.at(frame_id='A', command='MY')
         
         # Expect a full packet to be written to the device
-        expected_data = '\x7E\x00\x04\x08AMY\x10'
+        expected_data = b'\x7E\x00\x04\x08AMY\x10'
         self.assertEqual(self.ser.data, expected_data)
         
     def test_send_at_command_with_param(self):
@@ -467,7 +467,7 @@ class TestSendShorthand(unittest.TestCase):
         self.xbee.at(frame_id='A', command='MY', parameter='\x00\x00')
         
         # Expect a full packet to be written to the device
-        expected_data = '\x7E\x00\x06\x08AMY\x00\x00\x10'
+        expected_data = b'\x7E\x00\x06\x08AMY\x00\x00\x10'
         self.assertEqual(self.ser.data, expected_data)
         
     def test_shorthand_disabled(self):

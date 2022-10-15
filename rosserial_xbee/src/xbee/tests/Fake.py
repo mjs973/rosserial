@@ -14,7 +14,7 @@ class FakeDevice:
     Represents a fake serial port for testing purposes
     """
     def __init__(self):
-        self.data = ''
+        self.data = b''
     
     def write(self, data):
         """
@@ -47,7 +47,7 @@ class FakeReadDevice:
         read_data = self.data[self.read_index:self.read_index + length]
         self.read_index += length
         
-        return read_data
+        return read_data.encode('iso-8859-1')
 
     def inWaiting(self):
         """

@@ -83,7 +83,7 @@ class XBeeBase(threading.Thread):
         result to the serial port
         """
         frame = APIFrame(data, self._escaped).output()
-        self.serial.write(frame)
+        self.serial.write(frame.encode('iso-8859-1'))
         
     def run(self):
         """
@@ -120,9 +120,10 @@ class XBeeBase(threading.Thread):
                 while (  self.serial.inWaiting() <1):
                     time.sleep(0.01)
                 byte = self.serial.read()
-                if byte =='':
+                if byte == b'':
                     continue 
 
+                byte = byte.decode('iso-8859-1')
                 if (mode ==0):
                     if byte == APIFrame.START_BYTE:
                         mode=1

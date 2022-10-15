@@ -25,17 +25,17 @@ class TestFakeReadDevice(unittest.TestCase):
         """
         reading one byte at a time should work as expected
         """
-        self.assertEqual(self.device.read(), 't')
-        self.assertEqual(self.device.read(), 'e')
-        self.assertEqual(self.device.read(), 's')
-        self.assertEqual(self.device.read(), 't')
+        self.assertEqual(self.device.read(), b't')
+        self.assertEqual(self.device.read(), b'e')
+        self.assertEqual(self.device.read(), b's')
+        self.assertEqual(self.device.read(), b't')
         
     def test_read_multiple_bytes(self):
         """
         reading multiple bytes at a time should work as expected
         """
-        self.assertEqual(self.device.read(3), 'tes')
-        self.assertEqual(self.device.read(), 't')
+        self.assertEqual(self.device.read(3), b'tes')
+        self.assertEqual(self.device.read(), b't')
         
     def test_read_too_many(self):
         """
