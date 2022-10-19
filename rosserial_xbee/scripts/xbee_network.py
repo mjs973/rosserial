@@ -108,7 +108,7 @@ like :
 		exit()
 	else :
 		xbee_port = sys.argv[1]
-		network_ids  = [ struct.pack('>h', int(id) ) for id in sys.argv[2:] ]
+		network_ids  = [ struct.pack('>h', int(id)).decode('iso-8859-1') for id in sys.argv[2:] ]
 
 	print("Contacting Xbees : " , network_ids)
 
