@@ -49,9 +49,6 @@ clients = {}
 
 debug = False;
 
-import threading
-
-
 class FakeSerial():
 	def __init__(self, id, xbee):
 		self.rxdata =''
@@ -90,8 +87,8 @@ class FakeSerial():
 		self.rxdata = ''
 
 	# Returns the number of bytes available to be read
-        def inWaiting(self):
-            return len(self.rxdata)
+	def inWaiting(self):
+		return len(self.rxdata)
 
 if __name__== '__main__':
 	print("RosSerial Xbee Network")

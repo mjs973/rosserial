@@ -70,7 +70,7 @@ def send(port, cmd):
 
 def setAT(port, cmd):
 	port.flushInput()
-	send(port, b'AT'+cmd.encode('iso-8859-1'))
+	send(port, 'AT')
 	rsp = port.readline()
 	print(rsp)
 	if b'OK' in rsp:
