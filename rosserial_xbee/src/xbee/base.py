@@ -194,6 +194,8 @@ class XBeeBase(threading.Thread):
             # Otherwise, the parameter was of variable length, and not 
             #  given
             if data:
+                if isinstance(data, bytes):
+                    data = data.decode('iso-8859-1')
                 packet += data
                 
         return packet

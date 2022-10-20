@@ -75,6 +75,10 @@ class FakeSerial():
 		return out
 
 	def write(self, data):
+		# this method is called from rosserial_python/SerialClient._write()
+		if isinstance(data, bytes):
+			# convert bytes to string
+			data = data.decode('iso-8859-1')
 		if (debug):
 			print("Sending ", [d for d in data])
 		self.xbee.send('tx', frame_id='0', options="\x01", dest_addr=self.id,data=data)
